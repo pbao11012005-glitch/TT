@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Một điều anh muốn nói với em ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffb6c8, #ff6b91, #e84372);
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+    color: #8b1745;
+}
+
+/* ÁNH SÁNG NỀN */
+.background-glow {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, #ffffff55, transparent 35%),
+        radial-gradient(circle at 80% 80%, #ffffff44, transparent 35%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* PHONG BÌ */
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s ease, visibility 1s;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-title {
+    color: white;
+    font-size: 27px;
+    margin-bottom: 35px;
+    text-shadow: 0 3px 10px #a3003c;
+}
+
+.envelope {
+    position: relative;
+    width: 290px;
+    height: 190px;
+    background: #ffdae5;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px #9d164855;
+    margin-bottom: 35px;
+    perspective: 800px;
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    background: #ffdae5;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ffb5ca;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #ff9fba;
+    clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+    z-index: 3;
+}
+
+.heart-seal {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 55px;
+    z-index: 5;
+    animation: beat 1s infinite;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+    }
+}
+
+.open-btn {
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    background: white;
+    color: #e91e63;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 20px #8b174555;
+    transition: 0.3s;
+}
+
+.open-btn:hover {
+    transform: scale(1.08);
+    background: #ffe5ed;
+}
+
+.hint {
+    color: white;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* NỘI DUNG CHÍNH */
+#main-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 15px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#main-content.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* TRÁI TIM LỚN */
+.big-heart {
+    font-size: 90px;
+    margin-bottom: 25px;
+    animation: heartbeat 1s infinite;
+    filter: drop-shadow(0 0 15px #ff1744);
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
+}
+
+/* HỘP THƯ */
+.letter {
+    width: 100%;
+    max-width: 750px;
+    padding: 40px 45px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 22px;
+    box-shadow: 0 15px 45px #8d174c55;
+    border: 2px solid white;
+    animation: letterAppear 1.5s ease;
+}
+
+@keyframes letterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #e91e63;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.letter p {
+    font-size: 17px;
+    line-height: 1.9;
+    text-align: justify;
+    margin-bottom: 17px;
+}
+
+.highlight {
+    color: #e91e63;
+    font-weight: bold;
+}
+
+.signature {
+    text-align: right !important;
+    color: #e91e63;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+/* KHU VỰC LỰA CHỌN */
+.choice-area {
+    text-align: center;
+    margin-top: 35px;
+    padding: 25px 10px;
+    border-top: 2px dashed #ffb6c8;
+}
+
+.choice-area h2 {
+    color: #e91e63;
+    margin-bottom: 12px;
+    font-size: 25px;
+}
+
+.choice-area p {
+    text-align: center;
+    color: #a33a61;
+    margin-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 90px;
+}
+
+.choice-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.35s ease;
+}
+
+.yes-btn {
+    background: #e91e63;
+    color: white;
+    box-shadow: 0 5px 18px #e91e6370;
+    transform: scale(1);
+}
+
+.no-btn {
+    background: #eeeeee;
+    color: #555;
+    transform: scale(1);
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+    font-size: 17px;
+    text-shadow: 0 2px 5px #a3003c;
+}
+
+/* TRÁI TIM BAY BÌNH THƯỜNG */
+.floating-heart {
+    position: fixed;
+    bottom: -60px;
+    z-index: 1;
+    pointer-events: none;
+    animation: flyUp linear forwards;
+    filter: drop-shadow(0 0 8px #ff1744);
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.6);
+        opacity: 0;
+    }
+    15% { opacity: 0.9; }
+    100% {
+        transform: translateY(-115vh) rotate(360deg) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* MÀN HÌNH CHÚC MỪNG */
+#celebration {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #ff4f87, #ff9bb8, #ff4f87);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#celebration.show {
+    display: flex;
+    animation: celebrationAppear 1s ease;
+}
+
+@keyframes celebrationAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.celebration-content {
+    position: relative;
+    z-index: 102;
+    color: white;
+    text-shadow: 0 3px 12px #a00045;
+}
+
+.celebration-content h1 {
+    color: white;
+    font-size: clamp(30px, 7vw, 55px);
+    animation: heartbeat 0.8s infinite;
+}
+
+.celebration-content p {
+    font-size: 23px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* TRÁI TIM CHÚC MỪNG */
+.celebration-heart {
+    position: absolute;
+    bottom: -60px;
+    animation: celebrationFly linear forwards;
+    pointer-events: none;
+    z-index: 101;
+}
+
+@keyframes celebrationFly {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    15% { opacity: 1; }
+    100% {
+        transform: translateY(-120vh) rotate(720deg) scale(2);
+        opacity: 0;
+    }
+}
+
+/* ĐIỆN THOẠI */
+@media(max-width: 600px) {
+    .letter {
+        padding: 25px 20px;
+    }
+
+    .letter p {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .big-heart {
+        font-size: 75px;
+    }
+
+    .intro-title {
+        font-size: 22px;
+    }
+
+    .buttons {
+        gap: 15px;
+    }
+
+    .choice-btn {
+        font-size: 14px;
+        padding: 13px 17px;
+    }
+
+    .celebration-content p {
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<!-- MÀN HÌNH PHONG BÌ -->
+<div id="intro">
+
+    <div class="intro-title">
+        💌 Có một điều anh muốn nói với em...
+    </div>
+
+    <div class="envelope" id="envelope">
+        <div class="envelope-body"></div>
+        <div class="heart-seal">❤️</div>
+    </div>
+
+    <button class="open-btn" onclick="openLetter()">
+        MỞ THƯ ❤️
+    </button>
+
+    <div class="hint">Nhấn vào đây để khám phá nhé!</div>
+
+</div>
+
+<!-- NỘI DUNG BỨC THƯ -->
+<div id="main-content">
+
+    <div class="big-heart">❤️</div>
+
+    <div class="letter">
+
+        <h1>💌 GỬI EM! 💌</h1>
+
+        <p>
+            Có lẽ em sẽ hơi bất ngờ khi nhận được những dòng này,
+            nhưng anh đã suy nghĩ khá lâu mới quyết định viết ra
+            những điều mà bình thường anh không biết phải bắt đầu
+            từ đâu để nói.
+        </p>
+
+        <p>
+            Anh vẫn nhớ lần đầu tiên chúng ta gặp nhau, trong một
+            hoàn cảnh khá bình thường, lúc đang lau muỗng. Có lẽ khi
+            ấy cả hai cũng chẳng nghĩ rằng một cuộc gặp gỡ đơn giản
+            như vậy lại khiến anh có thêm một người để nhớ đến.
+        </p>
+
+        <p>
+            Điều khiến anh ấn tượng nhất về em chính là tiếng cười
+            của em. Anh không biết phải diễn tả thế nào cho đúng,
+            nhưng nếu phải dùng một câu để miêu tả thì anh nghĩ câu
+            này là phù hợp nhất:
+            <span class="highlight">
+                "Cười như thú, nụ cười mất dần nhân tính."
+            </span>
+            Nghe có vẻ hơi xúc phạm, nhưng anh xin khẳng định đây
+            là một lời nhận xét mang tính chuyên môn sau quá trình
+            quan sát và ghi nhớ. Đùa một chút thôi, nhưng thật sự
+            tiếng cười ấy rất đặc biệt, đến mức anh khó có thể nhầm
+            lẫn với bất kỳ ai khác.
+        </p>
+
+        <p>
+            Sau lần gặp gỡ ấy, anh dần chú ý đến em nhiều hơn.
+            Anh không dám nói rằng mình đã hiểu hết về em, cũng
+            không dám chắc em là người như thế nào khi chưa có đủ
+            thời gian để tìm hiểu. Nhưng anh nhận ra rằng mình có
+            một chút mong chờ mỗi khi được gặp em, một chút vui vẻ
+            khi nhìn thấy em cười và đôi lúc cũng tự nhiên nghĩ đến
+            em dù chẳng có lý do gì cụ thể.
+        </p>
+
+        <p>
+            Anh viết những dòng này không phải để tạo áp lực hay
+            mong em phải đưa ra một câu trả lời ngay lập tức.
+            Anh chỉ muốn thành thật với cảm xúc của mình, rằng anh
+            có cảm tình với em và muốn có cơ hội được tìm hiểu em
+            nhiều hơn. Anh muốn biết thêm về những điều em thích,
+            những câu chuyện em thường kể, những lúc em vui vẻ và
+            cả những khi em không được vui.
+        </p>
+
+        <p>
+            Anh không biết em có cảm nhận được điều gì từ phía anh
+            hay không, nhưng anh nghĩ rằng nếu cứ giữ mãi trong lòng
+            thì có lẽ sẽ bỏ lỡ một cơ hội đáng để thử. Vì vậy, anh
+            chọn cách nói ra, dù có thể hơi vụng về một chút.
+        </p>
+
+        <p>
+            Nếu em cũng có chút cảm tình, anh hy vọng chúng ta có
+            thể cho nhau cơ hội để bắt đầu tìm hiểu. Còn nếu tình
+            cảm của anh không giống với điều em mong muốn, anh vẫn
+            tôn trọng suy nghĩ và quyết định của em. Anh chỉ mong
+            em biết rằng những điều anh viết ở đây đều xuất phát
+            từ sự chân thành.
+        </p>
+
+        <p>
+            Cuối cùng, anh muốn cảm ơn em vì đã xuất hiện trong một
+            cuộc gặp gỡ rất đỗi bình thường, để rồi khiến anh nhớ
+            mãi một tiếng cười có phần bất ổn nhưng lại rất đáng nhớ.
+        </p>
+
+        <p>
+            Mong rằng sẽ có thêm nhiều dịp để được gặp em, được
+            nghe em cười và biết thêm nhiều điều về em.
+        </p>
+
+        <p class="signature">
+            Một người đang muốn nghiêm túc tìm hiểu em. ❤️
+        </p>
+
+        <!-- HAI LỰA CHỌN -->
+        <div class="choice-area">
+
+            <h2>Vậy em cho anh một cơ hội nhé? ❤️</h2>
+
+            <p>Anh muốn được ở bên cạnh và chăm sóc em.</p>
+
+            <div class="buttons">
+
+                <button class="choice-btn yes-btn"
+                        id="yesBtn"
+                        onclick="acceptLove()">
+                    ❤️ Đồng ý làm người yêu anh
+                </button>
+
+                <button class="choice-btn no-btn"
+                        id="noBtn"
+                        onclick="refuseLove()">
+                    🥺 Không
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Made with ❤️ dành riêng cho em
+    </div>
+
+</div>
+
+<!-- MÀN HÌNH CHÚC MỪNG -->
+<div id="celebration">
+
+    <div class="celebration-content">
+
+        <div style="font-size:90px;">💖</div>
+
+        <h1>ANH BIẾT MÀ!!!</h1>
+
+        <p>
+            Chúc mừng chúng ta đã có nhau! 🥰<br>
+            Từ hôm nay, anh có thể gọi em là người yêu rồi!<br>
+            Yêu em rất nhiều ❤️
+        </p>
+
+        <div style="font-size:65px; margin-top:20px;">
+            💑 💍 💗
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// MỞ PHONG BÌ
+let opened = false;
+
+function openLetter() {
+
+    if (opened) return;
+    opened = true;
+
+    const intro = document.getElementById("intro");
+    const envelope = document.getElementById("envelope");
+    const content = document.getElementById("main-content");
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+
+        intro.classList.add("hide");
+
+        content.style.display = "flex";
+
+        setTimeout(() => {
+            content.classList.add("show");
+        }, 50);
+
+        startHearts();
+
+    }, 1000);
+}
+
+
+// TẠO TRÁI TIM BAY BÌNH THƯỜNG
+let heartInterval = null;
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "floating-heart";
+
+    const hearts = [
+        "❤️", "💕", "💗", "💖", "💘", "💓"
+    ];
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 30) + "px";
+
+    const duration = 4 + Math.random() * 5;
+
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
+}
+
+
+// BẮT ĐẦU HIỆU ỨNG TRÁI TIM
+function startHearts() {
+
+    if (heartInterval) return;
+
+    createHeart();
+
+    heartInterval = setInterval(createHeart, 300);
+}
+
+
+// NÚT KHÔNG NHỎ LẠI, NÚT ĐỒNG Ý TO RA
+let yesScale = 1;
+let noScale = 1;
+
+function refuseLove() {
+
+    yesScale = Math.min(yesScale + 0.2, 2.5);
+    noScale = Math.max(noScale - 0.12, 0.25);
+
+    document.getElementById("yesBtn").style.transform =
+        `scale(${yesScale})`;
+
+    document.getElementById("noBtn").style.transform =
+        `scale(${noScale})`;
+}
+
+
+// KHI NHẤN ĐỒNG Ý
+let celebrated = false;
+
+function acceptLove() {
+
+    if (celebrated) return;
+    celebrated = true;
+
+    const celebration =
+        document.getElementById("celebration");
+
+    celebration.classList.add("show");
+
+    // TẠO TRÁI TIM BAY DÀY ĐẶC
+    setInterval(() => {
+
+        const heart = document.createElement("div");
+
+        heart.className = "celebration-heart";
+
+        const hearts = [
+            "❤️", "💖", "💕", "💗",
+            "💘", "💝", "💓", "🥰", "💞"
+        ];
+
+        heart.innerHTML =
+            hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+            (20 + Math.random() * 45) + "px";
+
+        const duration = 2 + Math.random() * 3;
+
+        heart.style.animationDuration = duration + "s";
+
+        celebration.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+
+    }, 80);
+
+}
+
+</script>
+
+</body>
+</html>
