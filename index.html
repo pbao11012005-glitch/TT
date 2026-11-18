@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#310d35">
+<title>Một điều anh muốn nói với em ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;overflow-x:hidden;color:#fff1fa;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(ellipse at 50% 110%,#8b245f 0%,transparent 55%),
+             linear-gradient(145deg,#170b2d,#351039 55%,#601b4b);
+}
+#heart-layer{position:fixed;inset:0;overflow:hidden;pointer-events:none;perspective:900px;z-index:0}
+.floating-heart{
+  position:absolute;bottom:-70px;width:22px;height:22px;
+  background:linear-gradient(145deg,#ffd2ec 0%,#ff69b4 38%,#d50975 100%);
+  transform:rotate(-45deg);border-radius:3px;
+  filter:drop-shadow(0 0 8px #ff66b7);
+  animation:rise var(--duration) linear forwards;
+}
+.floating-heart:before,.floating-heart:after{
+  content:"";position:absolute;width:100%;height:100%;border-radius:50%;
+  background:inherit;
+}
+.floating-heart:before{top:-50%;left:0}
+.floating-heart:after{left:50%;top:0}
+@keyframes rise{
+  0%{transform:translate3d(0,0,0) rotate(-45deg) rotateY(0deg) scale(.55);opacity:0}
+  12%{opacity:.95}
+  50%{transform:translate3d(var(--drift),-55vh,70px) rotate(135deg) rotateY(190deg) scale(1.15);opacity:.9}
+  100%{transform:translate3d(calc(var(--drift)*-.7),-115vh,-80px) rotate(315deg) rotateY(390deg) scale(.7);opacity:0}
+}
+main{position:relative;z-index:1;width:min(820px,92%);margin:auto;padding:58px 0 80px;text-align:center}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;color:#ffc5e5;font-size:12px;margin-bottom:16px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.25;color:#ffd0e9;text-shadow:0 0 22px #ff4fae;margin-bottom:14px}
+.intro{color:#f8d8eb;line-height:1.7}
+.main-heart{display:block;font-size:88px;margin:28px auto;filter:drop-shadow(0 0 22px #ff4fae);animation:pulse 1.25s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.16)}}
+button{font:600 15px "Segoe UI",sans-serif;border:0;border-radius:40px;padding:14px 24px;cursor:pointer;transition:transform .25s,filter .25s}
+button:hover{filter:brightness(1.12)}
+.open-btn,.yes-btn{color:white;background:linear-gradient(120deg,#ff4b9c,#b94de0);box-shadow:0 0 24px #ff4b9c66}
+.letter{display:none;margin:46px auto 0;text-align:justify;line-height:1.9;font-size:16px;color:#fff0f8;animation:show .9s ease}
+@keyframes show{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.letter h2{text-align:center;color:#ffc0e2;margin-bottom:26px;font-size:25px}
+.letter p{margin:0 0 17px;text-indent:24px}
+.letter .center{text-align:center;text-indent:0;color:#ffc0e2;font-weight:600}
+.question{margin-top:42px;padding-top:28px;border-top:1px solid #ffb8df55;text-align:center}
+.question h2{font-size:clamp(22px,4vw,30px);margin-bottom:12px}
+.question p{text-align:center;text-indent:0;margin-bottom:22px}
+.no-btn{background:#ffe0f1;color:#76234e;margin:8px}
+.yes-btn{margin:8px}
+.result{display:none;position:fixed;inset:0;z-index:5;background:#190820f2;align-items:center;justify-content:center;text-align:center;padding:25px}
+.result h2{font-size:clamp(32px,7vw,52px);color:#ffc5e5;text-shadow:0 0 22px #ff4fae;margin-bottom:18px}
+.result p{font-size:19px;line-height:1.8}
+.result .emoji{font-size:58px;margin-top:18px}
+@media(max-width:600px){main{padding-top:42px}.letter{font-size:15px}.letter p{text-indent:16px;margin-bottom:15px}button{padding:13px 19px}}
+@media(prefers-reduced-motion:reduce){.main-heart{animation:none}.floating-heart{animation-duration:14s}}
+</style>
+</head>
+<body>
+<div id="heart-layer" aria-hidden="true"></div>
+<main>
+  <div class="eyebrow">Một lời nhắn dành riêng cho em</div>
+  <h1>Có một điều anh muốn nói với em ❤️</h1>
+  <p class="intro">Giữa rất nhiều cuộc gặp gỡ, có một người khiến anh muốn viết những dòng này.</p>
+  <span class="main-heart">💗</span>
+  <button class="open-btn" id="openBtn" type="button">Mở lời nhắn của anh 💌</button>
+
+  <section class="letter" id="letter">
+    <h2>💌 Gửi em!</h2>
+    <p>Có lẽ em sẽ hơi bất ngờ khi nhận được những dòng này, nhưng anh đã suy nghĩ khá lâu mới quyết định viết ra những điều mà bình thường anh không biết phải bắt đầu từ đâu để nói.</p>
+    <p>Anh vẫn nhớ lần đầu tiên chúng ta gặp nhau, trong một hoàn cảnh khá bình thường, lúc đang lau muỗng. Có lẽ khi ấy cả hai cũng chẳng nghĩ rằng một cuộc gặp gỡ đơn giản như vậy lại khiến anh có thêm một người để nhớ đến.</p>
+    <p>Điều khiến anh ấn tượng nhất về em chính là tiếng cười của em. Anh không biết phải diễn tả thế nào cho đúng, nhưng nếu phải dùng một câu để miêu tả thì anh nghĩ câu này là phù hợp nhất: “Cười như thú, nụ cười mất dần nhân tính.” Nghe có vẻ hơi trêu chọc, nhưng thật sự tiếng cười ấy rất đặc biệt và khiến anh nhớ mãi.</p>
+    <p>Sau lần gặp gỡ ấy, anh dần chú ý đến em nhiều hơn. Anh không dám nói rằng mình đã hiểu hết về em, nhưng anh nhận ra mình có một chút mong chờ mỗi khi được gặp em, một chút vui vẻ khi nhìn thấy em cười và đôi lúc cũng tự nhiên nghĩ đến em dù chẳng có lý do gì cụ thể.</p>
+    <p>Anh viết những dòng này không phải để tạo áp lực hay mong em phải đưa ra một câu trả lời ngay lập tức. Anh chỉ muốn thành thật với cảm xúc của mình, rằng anh có cảm tình với em và muốn có cơ hội được tìm hiểu em nhiều hơn.</p>
+    <p>Anh không biết em có cảm nhận được điều gì từ phía anh hay không, nhưng anh nghĩ rằng nếu cứ giữ mãi trong lòng thì có lẽ sẽ bỏ lỡ một cơ hội đáng để thử. Vì vậy, anh chọn cách nói ra, dù có thể hơi vụng về một chút.</p>
+    <p>Nếu em cũng có chút cảm tình, anh hy vọng chúng ta có thể cho nhau cơ hội để bắt đầu tìm hiểu. Còn nếu tình cảm của anh không giống với điều em mong muốn, anh vẫn tôn trọng suy nghĩ và quyết định của em.</p>
+    <p>Cuối cùng, anh muốn cảm ơn em vì đã xuất hiện trong một cuộc gặp gỡ rất đỗi bình thường, để rồi khiến anh nhớ mãi một tiếng cười có phần “bất ổn” nhưng lại rất đáng nhớ.</p>
+    <p class="center">Mong rằng sẽ có thêm nhiều dịp để được gặp em, được nghe em cười và biết thêm nhiều điều về em. ❤️</p>
+
+    <div class="question">
+      <h2>Em cho anh một cơ hội nhé? ❤️</h2>
+      <p>Anh muốn được ở bên cạnh và tìm hiểu em nhiều hơn.</p>
+      <button class="yes-btn" id="yesBtn" type="button">❤️ Đồng ý làm người yêu anh</button>
+      <button class="no-btn" id="noBtn" type="button">🥺 Không</button>
+    </div>
+  </section>
+</main>
+
+<div class="result" id="result">
+  <div>
+    <h2>Anh vui lắm! ❤️</h2>
+    <p>Cảm ơn em đã cho anh cơ hội.</p>
+    <p>Mình cùng bắt đầu bằng những điều thật giản dị nhé! 🥰</p>
+    <div class="emoji">💗 💞 💖</div>
+  </div>
+</div>
+
+<script>
+const layer=document.getElementById("heart-layer");
+function makeHeart(){
+  const h=document.createElement("span");
+  h.className="floating-heart";
+  const size=13+Math.random()*27;
+  h.style.width=size+"px";
+  h.style.height=size+"px";
+  h.style.left=Math.random()*100+"vw";
+  h.style.setProperty("--duration",(7+Math.random()*6)+"s");
+  h.style.setProperty("--drift",(Math.random()*130-65)+"px");
+  layer.appendChild(h);
+  setTimeout(()=>h.remove(),13500);
+}
+for(let i=0;i<18;i++)setTimeout(makeHeart,i*180);
+setInterval(makeHeart,330);
+
+document.getElementById("openBtn").addEventListener("click",()=>{
+  document.getElementById("letter").style.display="block";
+  document.getElementById("openBtn").style.display="none";
+  document.getElementById("letter").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+let attempts=0;
+document.getElementById("noBtn").addEventListener("click",()=>{
+  attempts++;
+  const no=document.getElementById("noBtn");
+  const yes=document.getElementById("yesBtn");
+  no.style.transform=`scale(${Math.max(.35,1-attempts*.12)})`;
+  yes.style.transform=`scale(${Math.min(1.8,1+attempts*.12)})`;
+  const messages=["🥺 Không","Em suy nghĩ lại nhé?","Cho anh cơ hội nha","Một lần thôi được không?","🥹"];
+  no.textContent=messages[Math.min(attempts,4)];
+});
+document.getElementById("yesBtn").addEventListener("click",()=>{
+  document.getElementById("result").style.display="flex";
+  for(let i=0;i<55;i++)setTimeout(makeHeart,i*55);
+});
+</script>
+</body>
+</html>
